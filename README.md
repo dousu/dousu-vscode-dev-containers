@@ -1,4 +1,6 @@
 # dousu-vscode-dev-containers
+![Docker Image CI](https://github.com/dousu/dousu-vscode-dev-containers/workflows/Docker%20Image%20CI/badge.svg)
+
 Images and configurations for VScode Remote-Container
 
 ## How to Use
