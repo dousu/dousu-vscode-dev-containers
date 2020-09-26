@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Hadolint
+      run: docker run --rm -i hadolint/hadolint < containers/python-docker-gcloud/.devcontainer/Dockerfile
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build containers/python-docker-gcloud/.devcontainer --file containers/python-docker-gcloud/.devcontainer/Dockerfile --tag my-image-name:$(date +%s)
