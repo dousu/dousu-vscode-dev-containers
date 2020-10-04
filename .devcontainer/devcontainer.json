@@ -16,7 +16,12 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   // Add the IDs of extensions you want installed when the container is created.
-  "extensions": ["ms-azuretools.vscode-docker", "esbenp.prettier-vscode"],
+  "extensions": [
+    "ms-azuretools.vscode-docker",
+    "esbenp.prettier-vscode",
+    "eamodio.gitlens",
+    "github.vscode-pull-request-github"
+  ],
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
   // Use 'postCreateCommand' to run commands after the container is created.
