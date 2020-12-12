@@ -42,7 +42,7 @@ RUN touch $BASHRC \
     && export TZ=Asia/Tokyo \
     && echo Asia/Tokyo > /etc/timezone \
     && ln -snf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \
-    && apt-get install -y --no-install-recommends golang git \
+    && apt-get update && apt-get install -y --no-install-recommends golang git \
     && go get -u github.com/tfsec/tfsec/cmd/tfsec \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
