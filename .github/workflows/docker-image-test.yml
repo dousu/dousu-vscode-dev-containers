@@ -11,12 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Hadolint
+    - name: Hadolint python-docker-gcloud
       run: docker run --rm -i hadolint/hadolint < containers/python-docker-gcloud/.devcontainer/Dockerfile
+    - name: Hadolint terraform-aws
+      run: docker run --rm -i hadolint/hadolint < containers/terraform-aws/.devcontainer/Dockerfile
 
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image
+    - name: Build the Docker image python-docker-gcloud
       run: docker build containers/python-docker-gcloud/.devcontainer --file containers/python-docker-gcloud/.devcontainer/Dockerfile --tag my-image-name:$(date +%s)
+    - name: Build the Docker image terraform-aws
+      run: docker build containers/terraform-aws/.devcontainer --file containers/terraform-aws/.devcontainer/Dockerfile --tag my-image-name:$(date +%s)
