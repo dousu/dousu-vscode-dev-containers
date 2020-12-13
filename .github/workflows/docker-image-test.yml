@@ -10,17 +10,25 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Hadolint python-docker-gcloud
-      run: docker run --rm -i hadolint/hadolint < containers/python-docker-gcloud/.devcontainer/Dockerfile
-    - name: Hadolint terraform-aws
-      run: docker run --rm -i hadolint/hadolint < containers/terraform-aws/.devcontainer/Dockerfile
+    - name: Check out code
+      uses: actions/checkout@v2
+    - name: Hadolint
+      # v1.11.0 is broken
+      uses: reviewdog/action-hadolint@v1.10.0
+      with:
+        github_token: ${{ secrets.github_token }}
+        reporter: github-pr-check
+        exclude: /.devcontainer/*
+        level: info
 
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - name: Check out code
+      uses: actions/checkout@v2
     - name: Build the Docker image python-docker-gcloud
       run: docker build containers/python-docker-gcloud/.devcontainer --file containers/python-docker-gcloud/.devcontainer/Dockerfile --tag my-image-name:$(date +%s)
+    - name: Build the Docker image kubernetes-helm
+      run: docker build containers/kubernetes-helm/.devcontainer --file containers/kubernetes-helm/.devcontainer/Dockerfile --tag my-image-name:$(date +%s)
     - name: Build the Docker image terraform-aws
       run: docker build containers/terraform-aws/.devcontainer --file containers/terraform-aws/.devcontainer/Dockerfile --tag my-image-name:$(date +%s)
