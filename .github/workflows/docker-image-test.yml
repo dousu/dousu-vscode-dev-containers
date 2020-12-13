@@ -20,6 +20,8 @@ jobs:
         reporter: github-pr-check
         exclude: /.devcontainer/*
         level: info
+        filter_mode: nofilter
+        fail_on_error: true
 
   build:
     runs-on: ubuntu-latest
