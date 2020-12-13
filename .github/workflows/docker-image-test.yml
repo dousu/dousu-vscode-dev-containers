@@ -28,5 +28,7 @@ jobs:
       uses: actions/checkout@v2
     - name: Build the Docker image python-docker-gcloud
       run: docker build containers/python-docker-gcloud/.devcontainer --file containers/python-docker-gcloud/.devcontainer/Dockerfile --tag my-image-name:$(date +%s)
+    - name: Build the Docker image kubernetes-helm
+      run: docker build containers/kubernetes-helm/.devcontainer --file containers/kubernetes-helm/.devcontainer/Dockerfile --tag my-image-name:$(date +%s)
     - name: Build the Docker image terraform-aws
       run: docker build containers/terraform-aws/.devcontainer --file containers/terraform-aws/.devcontainer/Dockerfile --tag my-image-name:$(date +%s)
