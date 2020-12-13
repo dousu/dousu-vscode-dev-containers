@@ -17,7 +17,7 @@ jobs:
       uses: reviewdog/action-hadolint@v1.10.0
       with:
         github_token: ${{ secrets.github_token }}
-        reporter: github-pr-check
+        reporter: github-pr-review
         exclude: /.devcontainer/*
         level: info
         filter_mode: nofilter
